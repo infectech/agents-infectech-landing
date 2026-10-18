@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Infectech Agent — We make agents</title>
+  <meta name="description" content="Infectech designs, builds and runs AI agents. Research, support, operations, code, voice — all kinds of agents.">
+  <meta name="theme-color" content="#fafafa">
+  <meta property="og:title" content="Infectech Agent — We make agents. All kinds of agents.">
+  <meta property="og:description" content="AI agents that read, reason and act inside your business.">
+  <meta property="og:image" content="assets/art/hero-preview.webp">
+  <link rel="icon" href="assets/svg/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/art/hero-preview.webp" fetchpriority="high">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <!-- Engraved-line icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-sphere" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1">
+        <circle cx="12" cy="12" r="9.5"/>
+        <ellipse cx="12" cy="12" rx="9.5" ry="3.2"/>
+        <ellipse cx="12" cy="12" rx="9.5" ry="3.2" transform="rotate(-28 12 12)"/>
+        <ellipse cx="12" cy="12" rx="3.4" ry="9.5"/>
+        <circle cx="12" cy="12" r="2" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-perceive" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+        <path d="M3 16c3.6-5.6 8-8.4 13-8.4s9.4 2.8 13 8.4c-3.6 5.6-8 8.4-13 8.4S6.6 21.6 3 16Z"/>
+        <circle cx="16" cy="16" r="5.2"/>
+        <circle cx="16" cy="16" r="2.1" fill="currentColor"/>
+        <path d="M12.2 18.6h7.6M12.9 20.1h6.2M14.2 21.3h3.6" stroke-width=".7"/>
+        <path d="M16 3.5v2.2M8.6 5.4l1.1 1.9M23.4 5.4l-1.1 1.9" stroke-width=".9"/>
+      </symbol>
+      <symbol id="i-reason" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="16" cy="5.5" r="2.2"/>
+        <path d="M14.9 7.4 8 27.5M17.1 7.4 24 27.5"/>
+        <path d="M9.6 21.8c4.2 2.4 8.6 2.4 12.8 0"/>
+        <path d="M12.3 13.6l1.4.5M11.6 15.6l1.4.5M10.9 17.6l1.4.5M19.7 13.6l-1.4.5M20.4 15.6l-1.4.5M21.1 17.6l-1.4.5" stroke-width=".7"/>
+      </symbol>
+      <symbol id="i-remember" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+        <rect x="5.5" y="4.5" width="21" height="4.2" rx="2.1"/>
+        <rect x="5.5" y="23.3" width="21" height="4.2" rx="2.1"/>
+        <path d="M8 8.7v14.6M24 8.7v14.6"/>
+        <path d="M11 12.5h10M11 15.5h10M11 18.5h6.5" stroke-width=".9"/>
+        <path d="M7 6.6h18M7 25.4h18" stroke-width=".6"/>
+      </symbol>
+      <symbol id="i-tools" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+        <circle cx="16" cy="16" r="8.2"/>
+        <circle cx="16" cy="16" r="3"/>
+        <path d="M16 4.6v3.2M16 24.2v3.2M4.6 16h3.2M24.2 16h3.2M7.9 7.9l2.3 2.3M21.8 21.8l2.3 2.3M7.9 24.1l2.3-2.3M21.8 10.2l2.3-2.3" stroke-width="2.6" stroke-linecap="butt"/>
+        <path d="M11.2 18.8a5.6 5.6 0 0 0 7.6 2.1M10.6 16.6a5.6 5.6 0 0 0 1.4 3.6" stroke-width=".7"/>
+      </symbol>
+      <symbol id="i-act" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 15.5c-4.2-1.8-4.6-6.2-1.4-10.5.1 2.6 1.7 3.4 2.2 5.3.8-1 1.1-2.2.9-3.6 2.7 2.7 3 6.6-1.7 8.8Z"/>
+        <path d="M11.5 17h9l-1.4 2.6h-6.2Z"/>
+        <path d="M13.5 19.6 14.6 29h2.8l1.1-9.4"/>
+        <path d="M14.6 22.5l2.8-1.4M14.8 25l2.6-1.3M15 27.4l2.2-1.1" stroke-width=".7"/>
+      </symbol>
+      <symbol id="i-report" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+        <path d="M27 3.5C17.8 5.4 11.6 12.6 8.4 24"/>
+        <path d="M27 3.5c-1.6 6.8-6.4 13.2-14 16.6"/>
+        <path d="M22.8 6.2l-1.6 3.8M19.6 8.6l-1.2 4.2M16.8 11.6l-.8 4.2M14.4 14.8l-.4 3.8" stroke-width=".7"/>
+        <path d="M8.4 24 6.5 28.5"/>
+        <path d="M10.5 28.5h15" stroke-width=".9"/>
+      </symbol>
+      <symbol id="g-orbit" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><circle cx="8" cy="8" r="2" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="g-delta" viewBox="0 0 16 16" fill="currentColor"><path d="M8 2 15 14H1Z"/></symbol>
+      <symbol id="g-rhomb" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1 15 8 8 15 1 8Z"/><path d="M8 5 11 8 8 11 5 8Z" fill="#1b43c7"/></symbol>
+      <symbol id="g-hex" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 1.5 13.6 4.75v6.5L8 14.5 2.4 11.25v-6.5Z"/></symbol>
+      <symbol id="g-bars" viewBox="0 0 16 16" fill="currentColor"><rect x="2" y="2" width="3" height="12" rx="1"/><rect x="6.5" y="5" width="3" height="9" rx="1"/><rect x="11" y="8" width="3" height="6" rx="1"/></symbol>
+      <symbol id="g-half" viewBox="0 0 16 16" fill="currentColor"><path d="M2 9a6 6 0 0 1 12 0Z"/><rect x="2" y="11" width="12" height="2.4" rx="1"/></symbol>
+      <symbol id="g-cross" viewBox="0 0 16 16" fill="currentColor"><path d="M6 1h4v5h5v4h-5v5H6v-5H1V6h5Z"/></symbol>
+      <symbol id="g-loop" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 8c-2-3.2-6-3.2-6 0s4 3.2 6 0 6-3.2 6 0-4 3.2-6 0Z"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 8h10M9 4l4 4-4 4"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="guides" aria-hidden="true"><span></span><span></span></div>
+
+  <header class="nav" id="top">
+    <div class="wrap nav__inner">
+      <a class="brand" href="#top" aria-label="Infectech Agent home">
+        <svg class="brand__mark" viewBox="0 0 863 1778" aria-hidden="true"><path d="M6 6 290 134 288 1550 4 1410Z M854 554 422 388 422 188 852 382Z M438 540 712 638 708 1768 434 1628Z"/></svg>
+        <span class="brand__name">Infectech</span><span class="brand__tag">/agent</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#agents">Agents</a>
+        <a href="#anatomy">Anatomy</a>
+        <a href="#work">At work</a>
+        <a href="#method">Method</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn btn--dark btn--sm" href="#contact">Commission an agent</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero wrap">
+      <div class="hero__copy">
+        <p class="label reveal"><span class="label__dot"></span>Infectech — Agent foundry · MMXXVI</p>
+        <h1 class="hero__title">
+          <span class="line"><span>We make agents.</span></span>
+          <span class="line line--muted"><span>All kinds of agents.</span></span>
+        </h1>
+        <p class="hero__lede reveal">We design, build and run AI agents that read, reason and act inside your business — from a single research assistant to a fleet that never sleeps, never forgets, and never replies-all.</p>
+        <div class="hero__cta reveal">
+          <a class="btn btn--dark" href="#contact">Commission an agent <svg class="btn__icon"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn--light" href="#agents">See the kinds</a>
+        </div>
+
+        <div class="console reveal" aria-label="Sample agent activity">
+          <div class="console__head">
+            <span class="console__dots"><i></i><i></i><i></i></span>
+            <span>agents.live</span>
+            <span class="console__count"><span class="pulse"></span><b id="running">5</b> running</span>
+          </div>
+          <ol class="console__body" id="console"></ol>
+          <div class="console__foot">Sample run · illustrative</div>
+        </div>
+      </div>
+
+      <figure class="plate plate--hero reveal" id="heroPlate">
+        <img src="assets/art/hero-preview.webp" width="512" height="768" alt="Copperplate engraving in blue and lavender: a six-armed winged figure in a winged helmet rises through billowing clouds, arms spread at different heights, drapery flaring, a radiant sun behind his head." fetchpriority="high">
+        <span class="chip chip--tl">PL. I</span>
+        <span class="chip chip--tr">The Engineer</span>
+        <span class="chip chip--bl">Six hands · one mind</span>
+      </figure>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-label="Kinds of agents we build">
+      <div class="marquee__track">
+        <ul>
+          <li>Research agents</li><li>Support agents</li><li>Sales agents</li><li>Coding agents</li><li>Voice agents</li><li>Ops agents</li><li>Data agents</li><li>Browser agents</li><li>Finance agents</li><li>Recruiting agents</li><li>Legal review agents</li><li>Personal agents</li>
+        </ul>
+        <ul aria-hidden="true">
+          <li>Research agents</li><li>Support agents</li><li>Sales agents</li><li>Coding agents</li><li>Voice agents</li><li>Ops agents</li><li>Data agents</li><li>Browser agents</li><li>Finance agents</li><li>Recruiting agents</li><li>Legal review agents</li><li>Personal agents</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 01 PANTHEON -->
+    <section class="section wrap" id="agents">
+      <div class="section__head">
+        <p class="label reveal">01 — The pantheon</p>
+        <h2 class="reveal">Every kind of work<br>has its patron.</h2>
+        <p class="section__lede reveal">We build agents for the work you'd rather not do twice. Four families we ship most often — and room on the cloud for whatever you need next.</p>
+      </div>
+
+      <div class="pantheon">
+        <article class="kind reveal">
+          <figure class="plate plate--card">
+            <img src="assets/art/card-athena.webp" width="1104" height="1376" loading="lazy" alt="Engraving of Athena seated on clouds in a crested helmet and scaled breastplate, an owl on her shoulder, pulling a scroll from a stack of books while long scrolls unfurl around her.">
+            <span class="chip chip--tl">PL. II</span>
+            <span class="chip chip--tr">Athena</span>
+          </figure>
+          <div class="kind__body">
+            <p class="kind__no">Agent family 01</p>
+            <h3>Research &amp; knowledge</h3>
+            <p>Reads everything so your team doesn't have to. Market scans, due diligence, and search across your own documents — every answer with its sources.</p>
+            <ul class="tags"><li>Deep research</li><li>RAG</li><li>Citations</li></ul>
+          </div>
+        </article>
+
+        <article class="kind reveal">
+          <figure class="plate plate--card">
+            <img src="assets/art/card-hephaestus.webp" width="1104" height="1376" loading="lazy" alt="Engraving of Hephaestus, bare-chested in a leather apron, hammer raised high, about to strike a glowing gear on an anvil as sparks fly in his forge.">
+            <span class="chip chip--tl">PL. III</span>
+            <span class="chip chip--tr">Hephaestus</span>
+          </figure>
+          <div class="kind__body">
+            <p class="kind__no">Agent family 02</p>
+            <h3>Builders</h3>
+            <p>Forges code, documents and reports. Pull requests, migrations, proposals and drafts — reviewed, tested, and handed back ready to ship.</p>
+            <ul class="tags"><li>Coding</li><li>Docs</li><li>QA</li></ul>
+          </div>
+        </article>
+
+        <article class="kind reveal">
+          <figure class="plate plate--card">
+            <img src="assets/art/card-atlas.webp" width="1104" height="1376" loading="lazy" alt="Engraving of Atlas kneeling on a rocky crag, straining to carry an enormous armillary sphere on his shoulders amid clouds.">
+            <span class="chip chip--tl">PL. IV</span>
+            <span class="chip chip--tr">Atlas</span>
+          </figure>
+          <div class="kind__body">
+            <p class="kind__no">Agent family 03</p>
+            <h3>Operations</h3>
+            <p>Carries the weight that never stops. Tickets, invoices, inventory and monitoring, around the clock — escalating to a human the moment it should.</p>
+            <ul class="tags"><li>Support</li><li>Back office</li><li>24/7</li></ul>
+          </div>
+        </article>
+
+        <article class="kind reveal">
+          <figure class="plate plate--card">
+            <img src="assets/art/card-daedalus.webp" width="1104" height="1376" loading="lazy" alt="Engraving of Daedalus, an old bearded inventor, standing at a drafting board among clouds and setting a pair of compasses on the plan of a labyrinth.">
+            <span class="chip chip--tl">PL. V</span>
+            <span class="chip chip--tr">Daedalus</span>
+          </figure>
+          <div class="kind__body">
+            <p class="kind__no">Agent family 04</p>
+            <h3>Workflows &amp; orchestration</h3>
+            <p>Designs the labyrinth, then walks it. Multi-step work across your tools and teams, with several agents in concert and approvals where they matter.</p>
+            <ul class="tags"><li>Multi-agent</li><li>Integrations</li><li>Approvals</li></ul>
+          </div>
+        </article>
+      </div>
+
+      <div class="more reveal">
+        <span class="more__label">Also forged here</span>
+        <ul class="more__list">
+          <li>Voice &amp; phone</li><li>Sales &amp; SDR</li><li>Browser automation</li><li>Data analysts</li><li>Finance &amp; accounting</li><li>Recruiting</li><li>Legal review</li><li>Personal assistants</li>
+          <li class="more__yours"><a href="#contact">Yours <svg class="btn__icon"><use href="#i-arrow"/></svg></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 02 ANATOMY -->
+    <section class="section wrap anatomy" id="anatomy">
+      <div class="section__head">
+        <p class="label reveal">02 — Anatomy of an agent</p>
+        <h2 class="reveal">Six arms.<br>One mind.</h2>
+        <p class="section__lede reveal">Every agent we ship is built from the same six capabilities, tuned to the job. Hover one to find its ring.</p>
+      </div>
+
+      <div class="anatomy__grid">
+        <figure class="plate plate--sphere reveal" id="spherePlate">
+          <canvas id="sphere" aria-label="A slowly turning armillary sphere drawn in fine lavender lines on deep blue; each ring stands for one capability of an agent." role="img"></canvas>
+          <span class="chip chip--tl">PL. VI</span>
+          <span class="chip chip--tr">Armillary</span>
+          <span class="chip chip--bl" id="ringLabel">Drag to turn</span>
+        </figure>
+
+        <ol class="arms" id="arms">
+          <li class="arm reveal" data-ring="0">
+            <svg class="arm__icon"><use href="#i-perceive"/></svg>
+            <div><p class="arm__no">I</p><h3>Perceive</h3><p>Reads email, documents, screens, calls and databases — any input your team already touches.</p></div>
+          </li>
+          <li class="arm reveal" data-ring="1">
+            <svg class="arm__icon"><use href="#i-reason"/></svg>
+            <div><p class="arm__no">II</p><h3>Reason</h3><p>Plans multi-step work with frontier models, picked per task by evals, not by habit.</p></div>
+          </li>
+          <li class="arm reveal" data-ring="2">
+            <svg class="arm__icon"><use href="#i-remember"/></svg>
+            <div><p class="arm__no">III</p><h3>Remember</h3><p>Keeps long-term memory of your customers, policies and past decisions. No re-explaining.</p></div>
+          </li>
+          <li class="arm reveal" data-ring="3">
+            <svg class="arm__icon"><use href="#i-tools"/></svg>
+            <div><p class="arm__no">IV</p><h3>Use tools</h3><p>Calls your APIs, CRM, ERP, browser and spreadsheets — with permissions scoped to the job.</p></div>
+          </li>
+          <li class="arm reveal" data-ring="4">
+            <svg class="arm__icon"><use href="#i-act"/></svg>
+            <div><p class="arm__no">V</p><h3>Act</h3><p>Sends, books, files and ships. Sensitive steps wait for a human to say yes.</p></div>
+          </li>
+          <li class="arm reveal" data-ring="5">
+            <svg class="arm__icon"><use href="#i-report"/></svg>
+            <div><p class="arm__no">VI</p><h3>Report</h3><p>Logs and explains every action. Digests, dashboards and a full audit trail.</p></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 03 AT WORK -->
+    <section class="section wrap" id="work">
+      <div class="section__head section__head--row">
+        <div>
+          <p class="label reveal">03 — At work</p>
+          <h2 class="reveal">Fast hands.<br>Every call on record.</h2>
+        </div>
+        <p class="section__lede reveal">Real runs, replayed at speed: every step, every tool it touched and how long each call took. Start to finish, nobody had to step in.</p>
+      </div>
+
+      <div class="work reveal" id="workPlate">
+        <article class="run panel" aria-label="Agent run, replayed">
+          <header class="run__head">
+            <div class="run__agent">
+              <span class="run__avatar" id="runAvatar">P</span>
+              <div>
+                <h3 id="runTitle">Reconcile March invoices</h3>
+                <p class="run__meta" id="runMeta">plutus · finance agent</p>
+              </div>
+            </div>
+            <span class="badge" id="runStatus">Working</span>
+          </header>
+          <ol class="run__steps" id="runSteps"></ol>
+          <div class="run__scopes">
+            <p>Scopes for this run</p>
+            <ul id="runScopes"></ul>
+          </div>
+          <footer class="run__foot">
+            <span id="runProgress">Step 0 of 8 · 0:00.0</span>
+            <button class="mini-btn mini-btn--ghost" id="runPause" type="button">Pause</button>
+          </footer>
+        </article>
+
+        <div class="orbit panel">
+            <canvas id="orbit" role="img" aria-label="Call map: the agent at the centre, the tools it uses on orbits around it, each call drawn as a packet going out to a tool and back."></canvas>
+            <span class="chip chip--tl" id="orbitName">Call map</span>
+            <span class="chip chip--tr" id="orbitTally">0 calls · 0 tools</span>
+        </div>
+
+        <div class="audit panel">
+          <p class="audit__title">Tool calls <span>live</span></p>
+          <div class="audit__head" aria-hidden="true"><span>Server</span><span>Tool</span><span>Result</span><span>Time</span></div>
+          <ol class="audit__rows" id="auditRows" aria-label="Recent tool calls"></ol>
+          <p class="audit__foot" id="auditFoot">Waiting for the first call</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 METHOD -->
+    <section class="section wrap" id="method">
+      <div class="section__head section__head--row">
+        <div>
+          <p class="label reveal">04 — The method</p>
+          <h2 class="reveal">From sketch to sky<br>in four plates.</h2>
+        </div>
+        <p class="section__lede reveal">No year-long transformation programme. A small team, your real data, and something working early enough to argue with.</p>
+      </div>
+
+      <ol class="steps">
+        <li class="step reveal">
+          <span class="step__no">I</span>
+          <h3>Survey</h3>
+          <p>We sit with your team, map the work, and find where an agent pays for itself first.</p>
+          <span class="step__time">Days</span>
+        </li>
+        <li class="step reveal">
+          <span class="step__no">II</span>
+          <h3>Draft</h3>
+          <p>A working prototype on your real data and tools — rough, honest, and quick to change.</p>
+          <span class="step__time">Days to weeks</span>
+        </li>
+        <li class="step reveal">
+          <span class="step__no">III</span>
+          <h3>Forge</h3>
+          <p>Evals, guardrails, permissions, integrations and observability. The unglamorous part, done properly.</p>
+          <span class="step__time">Weeks</span>
+        </li>
+        <li class="step reveal">
+          <span class="step__no">IV</span>
+          <h3>Launch &amp; tend</h3>
+          <p>We deploy, watch and improve it every week. Deployments are boring, on purpose.</p>
+          <span class="step__time">Ongoing</span>
+        </li>
+      </ol>
+
+      <ul class="tenets">
+        <li class="reveal"><h3>Model-agnostic</h3><p>Claude, GPT, Gemini or open weights — whatever wins your evals.</p></li>
+        <li class="reveal"><h3>Human in the loop</h3><p>Approvals wherever a mistake would cost more than a minute.</p></li>
+        <li class="reveal"><h3>Evaluated, not vibed</h3><p>Every agent ships with tests that say when it's good enough.</p></li>
+        <li class="reveal"><h3>Measured in outcomes</h3><p>We report hours saved and errors caught, not tokens burned.</p></li>
+      </ul>
+    </section>
+
+    <!-- PROMO -->
+    <section class="wrap promo-wrap" aria-labelledby="promo-title">
+      <div class="promo reveal">
+        <div class="promo__copy">
+          <h2 id="promo-title">Ship working agents,<br>not experiments.</h2>
+          <p>Start from our blueprints for research, support, operations and workflows. We fit them to your data, your tools and your approval rules.</p>
+          <div class="promo__cta">
+            <a class="btn btn--white" href="#contact">Start a project <svg class="btn__icon"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn--ghost" href="#agents">See the agents</a>
+          </div>
+          <div class="promo__rule"></div>
+          <p class="promo__label">Built by the team behind</p>
+          <div class="promo__logos">
+            <div class="marquee__track">
+              <ul>
+                <li><svg><use href="#g-orbit"/></svg>AIHR</li>
+                <li><svg><use href="#g-delta"/></svg>AmarBiz</li>
+                <li><svg><use href="#g-half"/></svg>Barighor</li>
+                <li><svg><use href="#g-hex"/></svg>Grameen Pest Control</li>
+                <li><svg><use href="#g-bars"/></svg>Sonic</li>
+                <li><svg><use href="#g-rhomb"/></svg>PrimeOMS</li>
+                <li><svg><use href="#g-cross"/></svg>Rookiesdnmco</li>
+                <li><svg><use href="#g-loop"/></svg>Memoriqo</li>
+              </ul>
+              <ul aria-hidden="true">
+                <li><svg><use href="#g-orbit"/></svg>AIHR</li>
+                <li><svg><use href="#g-delta"/></svg>AmarBiz</li>
+                <li><svg><use href="#g-half"/></svg>Barighor</li>
+                <li><svg><use href="#g-hex"/></svg>Grameen Pest Control</li>
+                <li><svg><use href="#g-bars"/></svg>Sonic</li>
+                <li><svg><use href="#g-rhomb"/></svg>PrimeOMS</li>
+                <li><svg><use href="#g-cross"/></svg>Rookiesdnmco</li>
+                <li><svg><use href="#g-loop"/></svg>Memoriqo</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="instrument" role="img" aria-label="Engraved astrolabe with a turning star map, its plate drawn for the latitude of Dhaka, and two meshed gears behind it.">
+          <img class="spin spin--g1" src="assets/svg/instrument/gear-1.svg" alt="" style="left:8.97%;top:61.17%;width:32.07%;height:32.07%">
+          <img class="spin spin--g2" src="assets/svg/instrument/gear-2.svg" alt="" style="left:4.54%;top:49.59%;width:17.07%;height:17.07%">
+          <img src="assets/svg/instrument/body.svg" alt="" style="left:18.40%;top:2.80%;width:75.20%;height:93.80%">
+          <img class="spin spin--rete" src="assets/svg/instrument/rete.svg" alt="" style="left:24.50%;top:27.50%;width:63.00%;height:63.00%">
+          <img src="assets/svg/instrument/rule.svg" alt="" style="left:18.80%;top:21.80%;width:74.40%;height:74.40%">
+        </div>
+        <span class="chip chip--br">PL. VII · Astrolabe, 23.8° N</span>
+      </div>
+    </section>
+
+    <!-- 04 FAQ -->
+    <section class="section wrap faq" id="faq">
+      <div class="section__head">
+        <p class="label reveal">05 — Frequently asked</p>
+        <h2 class="reveal">Questions,<br>answered plainly.</h2>
+      </div>
+      <div class="faq__list">
+        <details class="reveal">
+          <summary>What kinds of agents can you build?</summary>
+          <p>If a person does it on a computer using judgment and rules, we can probably build an agent for it — research, support, sales, operations, finance, code, voice. If it shouldn't be automated, we'll tell you that too.</p>
+        </details>
+        <details class="reveal">
+          <summary>Which AI models do you use?</summary>
+          <p>Whichever wins the evals for your task: Claude, GPT, Gemini, or open-weight models you host yourself. We're not married to any lab, and we can switch when a better one ships.</p>
+        </details>
+        <details class="reveal">
+          <summary>Where does it run, and is our data safe?</summary>
+          <p>In your cloud, in ours, or on-premise. Agents get least-privilege access, every action is logged, and anything sensitive waits for a human to approve it.</p>
+        </details>
+        <details class="reveal">
+          <summary>How long until we have something working?</summary>
+          <p>A working prototype usually lands in days and a production agent in weeks. You get a real estimate after the survey, not before.</p>
+        </details>
+        <details class="reveal">
+          <summary>What happens after launch?</summary>
+          <p>We monitor it, tune prompts and tools, and ship improvements on a steady cadence. You get a digest of what your agents did and what we changed.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact wrap" id="contact" aria-labelledby="contact-title">
+      <div class="contact__card reveal">
+        <div class="contact__info">
+          <div class="contact__copy">
+            <p class="contact__eyebrow">Contact</p>
+            <h2 id="contact-title">Let's build your<br>next agent.</h2>
+            <p class="contact__lede">Tell us the work you'd hand to a tireless colleague. An engineer replies with what an agent could do about it.</p>
+            <dl class="contact__facts">
+              <div><dt>Email</dt><dd><a href="mailto:infectech.official@gmail.com">infectech.official@gmail.com</a></dd></div>
+              <div><dt>Response</dt><dd>Within one business day</dd></div>
+              <div><dt>Studio</dt><dd>Dhaka, Bangladesh</dd></div>
+            </dl>
+          </div>
+          <span class="chip chip--tr contact__clock" id="contactClock">Dhaka --:--:--</span>
+          <canvas class="solids" id="solids" role="img" aria-label="Kepler's nested Platonic solids in engraved hollow frames: dodecahedron, icosahedron, cube, octahedron and tetrahedron, each turning on its own axis. Each solid stands for one agent family; the one you pick lights up."></canvas>
+          <div class="solids-space" aria-hidden="true"></div>
+          <span class="chip chip--bl contact__plate">PL. IX · Kepler's Mysterium, 1596</span>
+          <span class="chip chip--br contact__shape" id="solidsInfo">5 agent families · 5 regular solids</span>
+        </div>
+
+        <form class="contact__form" id="contactForm" novalidate>
+          <h3>Tell us about your agent</h3>
+          <p class="contact__sub">Share a few details and a real person gets back to you soon.</p>
+          <div class="field-row">
+            <label class="field"><span>First name</span><input name="first" autocomplete="given-name" placeholder="Jordan" required></label>
+            <label class="field"><span>Last name</span><input name="last" autocomplete="family-name" placeholder="Reyes" required></label>
+          </div>
+          <div class="field-row">
+            <label class="field"><span>Work email</span><input name="email" type="email" autocomplete="email" placeholder="jordan@studio.co" required></label>
+            <label class="field"><span>Company</span><input name="company" autocomplete="organization" placeholder="Studio name"></label>
+          </div>
+          <fieldset class="field">
+            <legend>What kind of agent?</legend>
+            <div class="pick">
+              <label><input type="checkbox" name="kind" value="Research"><span>Research</span></label>
+              <label><input type="checkbox" name="kind" value="Support"><span>Support</span></label>
+              <label><input type="checkbox" name="kind" value="Operations"><span>Operations</span></label>
+              <label><input type="checkbox" name="kind" value="Workflows"><span>Workflows</span></label>
+              <label><input type="checkbox" name="kind" value="Voice"><span>Voice</span></label>
+              <label><input type="checkbox" name="kind" value="Not sure yet"><span>Not sure yet</span></label>
+            </div>
+          </fieldset>
+          <label class="field"><span>Message</span><textarea name="message" rows="3" placeholder="What should your agent do, and which tools does it touch?" required></textarea></label>
+          <button class="btn btn--dark contact__send" type="submit">Send message <svg class="btn__icon"><use href="#i-arrow"/></svg></button>
+          <p class="contact__status" id="contactStatus" role="status"></p>
+          <p class="contact__terms">Sending this means you accept our <a href="https://infec.tech/terms" target="_blank" rel="noopener">Terms</a> and <a href="https://infec.tech/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div class="footer__about">
+          <a class="brand" href="#top" aria-label="Back to top">
+            <svg class="brand__mark" viewBox="0 0 863 1778" aria-hidden="true"><path d="M6 6 290 134 288 1550 4 1410Z M854 554 422 388 422 188 852 382Z M438 540 712 638 708 1768 434 1628Z"/></svg>
+            <span class="brand__name">Infectech</span><span class="brand__tag">/agent</span>
+          </a>
+          <p>The agent practice of Infectech. We engineer intelligent software — and now, software that works on its own.</p>
+        </div>
+        <div>
+          <p class="footer__h">Contact</p>
+          <ul>
+            <li><a href="mailto:infectech.official@gmail.com">infectech.official@gmail.com</a></li>
+            <li><a href="https://wa.me/8801326561196" target="_blank" rel="noopener">WhatsApp +880 1326-561196</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Elsewhere</p>
+          <ul>
+            <li><a href="https://infec.tech" target="_blank" rel="noopener">infec.tech</a></li>
+            <li><a href="https://www.linkedin.com/company/infectechltd" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://github.com/infectech" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://www.facebook.com/infectechltd" target="_blank" rel="noopener">Facebook</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__h">Index</p>
+          <ul>
+            <li><a href="#agents">Agents</a></li>
+            <li><a href="#anatomy">Anatomy</a></li>
+            <li><a href="#work">At work</a></li>
+            <li><a href="#method">Method</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__word" aria-hidden="true">Infectech<span>/agent</span></p>
+      <div class="footer__base">
+        <span>© 2026 Infectech. All rights reserved.</span>
+        <span class="footer__glyph"><svg><use href="#i-sphere"/></svg> Engraved in-house</span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }</script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/solids.js" defer></script>
+  <script src="assets/js/activity.js" defer></script>
+  <script type="module" src="assets/js/callmap3d.js"></script>
+</body>
+</html>

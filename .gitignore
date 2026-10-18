@@ -1,0 +1,11 @@
+# generation drafts and caches: regenerate with the scripts in art/
+art/raw/
+__pycache__/
+*.pyc
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
