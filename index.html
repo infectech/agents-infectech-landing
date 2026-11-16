@@ -534,6 +534,14 @@
   </footer>
 
   <script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }</script>
+  <div class="modal" id="thanksModal" role="dialog" aria-modal="true" aria-labelledby="thanksTitle" hidden>
+    <div class="modal__card">
+      <div class="modal__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <h3 id="thanksTitle">Thank you!</h3>
+      <p>We've received your message. A real person from the team will read it and get back to you soon.</p>
+      <button class="btn btn--dark" type="button" id="thanksClose">Done</button>
+    </div>
+  </div>
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/solids.js" defer></script>
   <script src="assets/js/activity.js" defer></script>

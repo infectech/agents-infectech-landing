@@ -422,6 +422,21 @@ fieldset.field legend { padding: 0; margin-bottom: 8px; font-size: 13px; font-we
 .contact__send { width: 100%; margin-top: 4px; }
 .contact__status { min-height: 0; font-size: 14px; color: var(--accent); }
 .contact__status:empty { display: none; }
+
+/* thank-you popup */
+.modal { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: var(--gutter);
+  background: rgba(10, 10, 10, .5); backdrop-filter: blur(6px); animation: modal-fade .25s var(--ease); }
+.modal[hidden] { display: none; }
+.modal__card { width: min(440px, 100%); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 40px 32px 32px; text-align: center; display: grid; justify-items: center; gap: 14px;
+  box-shadow: 0 30px 80px rgba(10, 10, 10, .25); animation: modal-pop .35s var(--ease); }
+.modal__badge { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--art); color: var(--chip-fg); box-shadow: 0 0 0 8px var(--chip-fg); }
+.modal__badge svg { width: 30px; height: 30px; }
+.modal__card h3 { margin: 10px 0 0; font-size: 28px; letter-spacing: -.02em; }
+.modal__card p { margin: 0 0 8px; color: var(--muted); line-height: 1.55; }
+@keyframes modal-fade { from { opacity: 0; } }
+@keyframes modal-pop { from { opacity: 0; transform: translateY(14px) scale(.96); } }
 .contact__terms { text-align: center; font-size: 13px; color: var(--muted); }
 .contact__terms a { color: var(--ink); font-weight: 600; }
 .contact__terms a:hover { text-decoration: underline; text-underline-offset: 3px; }

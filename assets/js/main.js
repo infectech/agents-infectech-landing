@@ -39,6 +39,12 @@
   if (form) {
     const status = document.getElementById("contactStatus");
     const btn = form.querySelector('button[type="submit"]');
+    const modal = document.getElementById("thanksModal");
+    const closeThanks = () => { modal.hidden = true; btn.focus(); };
+    const openThanks = () => { modal.hidden = false; document.getElementById("thanksClose").focus(); };
+    document.getElementById("thanksClose").addEventListener("click", closeThanks);
+    modal.addEventListener("click", (e) => { if (e.target === modal) closeThanks(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.hidden) closeThanks(); });
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (!form.reportValidity()) return;
@@ -67,7 +73,8 @@
         const data = await res.json().catch(() => ({}));
         if (!res.ok || data.success === "false" || data.success === false) throw new Error();
         form.reset();
-        status.textContent = "Thank you! We've received your message and a real person will get back to you soon.";
+        status.textContent = "";
+        openThanks();
       } catch (err) {
         status.textContent = "Sorry, something went wrong. Please try again or email infectech.official@gmail.com.";
       } finally {
