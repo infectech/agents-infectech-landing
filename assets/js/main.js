@@ -34,21 +34,45 @@
     new IntersectionObserver(([e]) => promo.classList.toggle("is-off", !e.isIntersecting)).observe(promo);
   }
 
-  /* ---------- Contact form: no backend, so hand everything to the visitor's email app ---------- */
+  /* ---------- Contact form: submitted via FormSubmit, which emails the details to the team ---------- */
   const form = document.getElementById("contactForm");
   if (form) {
     const status = document.getElementById("contactStatus");
-    form.addEventListener("submit", (e) => {
+    const btn = form.querySelector('button[type="submit"]');
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (!form.reportValidity()) return;
       const f = new FormData(form);
       const v = (k) => (f.get(k) || "").toString().trim();
       const kinds = f.getAll("kind").join(", ") || "Not specified";
-      const subject = `New agent: ${v("company") || `${v("first")} ${v("last")}`}`;
-      const body = [`Name: ${v("first")} ${v("last")}`, `Email: ${v("email")}`, `Company: ${v("company") || "-"}`,
-                    `Agent: ${kinds}`, "", v("message")].join("\n");
-      window.location.href = `mailto:infectech.official@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      status.textContent = "Opening your email app with everything filled in. Just press send.";
+      const payload = {
+        _subject: `New agent: ${v("company") || `${v("first")} ${v("last")}`}`,
+        _replyto: v("email"),
+        _template: "table",
+        _captcha: "false",
+        Name: `${v("first")} ${v("last")}`,
+        Email: v("email"),
+        Company: v("company") || "-",
+        Agent: kinds,
+        Message: v("message"),
+      };
+      btn.disabled = true;
+      status.textContent = "Sending...";
+      try {
+        const res = await fetch("https://formsubmit.co/ajax/infectech.official@gmail.com", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || data.success === "false" || data.success === false) throw new Error();
+        form.reset();
+        status.textContent = "Thank you! We've received your message and a real person will get back to you soon.";
+      } catch (err) {
+        status.textContent = "Sorry, something went wrong. Please try again or email infectech.official@gmail.com.";
+      } finally {
+        btn.disabled = false;
+      }
     });
   }
 
