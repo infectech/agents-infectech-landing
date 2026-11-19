@@ -76,7 +76,7 @@
         status.textContent = "";
         openThanks();
       } catch (err) {
-        status.textContent = "Sorry, something went wrong. Please try again or email infectech.official@gmail.com.";
+        status.textContent = "Sorry, something went wrong. Please try again or email hello@infec.tech.";
       } finally {
         btn.disabled = false;
       }
